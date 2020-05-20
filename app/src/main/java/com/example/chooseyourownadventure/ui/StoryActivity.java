@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,5 +59,16 @@ public class StoryActivity extends AppCompatActivity {
 
         pageText = String.format(pageText, name);
         storyTextView.setText(pageText);
+
+        if(page.isFinalPage()){
+            choice1Button.setVisibility(View.INVISIBLE);
+            choice2Button.setText(R.string.play_again_button_text);
+            choice2Button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadPage(0);
+                }
+            });
+        }
     }
 }
